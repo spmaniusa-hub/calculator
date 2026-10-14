@@ -35,4 +35,3 @@ document.addEventListener("keydown", function (event) {
         display.value = display.value.slice(0, -1) || "0";
     }
 });
-git s
