@@ -275,6 +275,21 @@ button {
     box-shadow: 0 4px 10px rgba(105, 87, 232, 0.15);
 }
 
+/* ---------- New Advanced Feature: Advanced Math Buttons (Light Mode) ---------- */
+
+.buttons .adv-func {
+    background: #eef2ff;
+    color: #4b48bb;
+    font-size: 17px;
+    font-weight: 600;
+    border: 1px solid rgba(75, 72, 187, 0.15);
+}
+
+.buttons .adv-func:hover {
+    background: #e0e7ff;
+    border-color: rgba(75, 72, 187, 0.35);
+}
+
 /* ---------- Dark mode button colors ---------- */
 
 /* New Advanced Feature: Memory Register Buttons (Dark Mode) */
@@ -288,6 +303,18 @@ body.dark-mode .buttons .memory-btn:hover {
     background: #373e66;
     border-color: rgba(158, 174, 255, 0.5);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* New Advanced Feature: Advanced Math Buttons (Dark Mode) */
+body.dark-mode .buttons .adv-func {
+    background: #232c4b;
+    color: #9ab4ff;
+    border: 1px solid rgba(154, 180, 255, 0.2);
+}
+
+body.dark-mode .buttons .adv-func:hover {
+    background: #313c63;
+    border-color: rgba(154, 180, 255, 0.45);
 }
 
 body.dark-mode .buttons .clear {

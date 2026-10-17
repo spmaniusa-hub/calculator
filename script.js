@@ -85,11 +85,56 @@ function calculate() {
         display.value = "Error";
     }
 }
+
+// ============================================================================
+// New Advanced Feature: Square Root & Percentage Calculation Logic
+// ============================================================================
+
+// New Advanced Feature: Square Root (√) calculation logic
+function calculateSquareRoot() {
+    try {
+        const val = getDisplayNumericValue();
+        if (val < 0) {
+            display.value = "Error";
+            return;
+        }
+        const result = parseFloat(Math.sqrt(val).toFixed(10));
+        display.value = String(result);
+    } catch {
+        display.value = "Error";
+    }
+}
+
+// New Advanced Feature: Percentage (%) calculation logic
+function calculatePercentage() {
+    try {
+        const val = getDisplayNumericValue();
+        const result = parseFloat((val / 100).toFixed(10));
+        display.value = String(result);
+    } catch {
+        display.value = "Error";
+    }
+}
+
+// New Advanced Feature: Toggle Sign (±) calculation logic
+function toggleSign() {
+    try {
+        const val = getDisplayNumericValue();
+        const result = parseFloat((-val).toFixed(10));
+        display.value = String(result);
+    } catch {
+        display.value = "Error";
+    }
+}
 document.addEventListener("keydown", function (event) {
     const key = event.key;
 
     if ("0123456789+-*/.".includes(key)) {
         addValue(key);
+    } else if (key === "%") {
+        // New Advanced Feature: Percentage keyboard shortcut
+        event.preventDefault();
+        calculatePercentage();
     } else if (key === "Enter" || key === "=") {
         event.preventDefault();
         calculate();
