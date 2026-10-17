@@ -9,6 +9,11 @@ A simple calculator built using HTML, CSS and JavaScript.
 - Multiplication
 - Division
 - Clear the display
+- **New Advanced Feature: Standard Memory Registers**
+  - **MC (Memory Clear)**: Resets stored memory value back to zero.
+  - **MR (Memory Recall)**: Loads stored memory value into the main display.
+  - **M+ (Memory Add)**: Adds current display value to stored memory.
+  - **M- (Memory Subtract)**: Subtracts current display value from stored memory.
 
 ## Technologies Used
 

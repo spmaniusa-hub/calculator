@@ -19,11 +19,21 @@
         </header>
 
         <div class="display-container">
-            <span class="display-label">YOUR CALCULATION</span>
+            <div class="display-header">
+                <span class="display-label">YOUR CALCULATION</span>
+                <!-- New Advanced Feature: Memory Register Status Indicator Badge -->
+                <span id="memoryIndicator" class="memory-indicator" aria-label="Memory stored"></span>
+            </div>
             <input type="text" id="display" value="0" readonly aria-label="Calculator display">
         </div>
 
         <div class="buttons">
+            <!-- New Advanced Feature: Memory Register Buttons for Advanced Users (MC, MR, M+, M-) -->
+            <button type="button" onclick="memoryClear()" class="memory-btn" id="memClear" aria-label="Memory Clear" title="New Advanced Feature: Memory Clear (MC)">MC</button>
+            <button type="button" onclick="memoryRecall()" class="memory-btn" id="memRecall" aria-label="Memory Recall" title="New Advanced Feature: Memory Recall (MR)">MR</button>
+            <button type="button" onclick="memoryAdd()" class="memory-btn" id="memAdd" aria-label="Memory Add" title="New Advanced Feature: Memory Add (M+)">M+</button>
+            <button type="button" onclick="memorySubtract()" class="memory-btn" id="memSubtract" aria-label="Memory Subtract" title="New Advanced Feature: Memory Subtract (M-)">M−</button>
+
             <button type="button" onclick="clearDisplay()" class="clear">AC</button>
             <button type="button" onclick="addValue('7')">7</button>
             <button type="button" onclick="addValue('8')">8</button>
