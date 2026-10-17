@@ -23,12 +23,20 @@ A simple calculator built using HTML, CSS and JavaScript.
   - **Interactive Recall**: Click any history entry to immediately restore its result to the display.
   - **Panel Drawer**: Accessible via the "🕒 History" header button with smooth slide toggle and "Clear" capability.
 
+## Screenshots
+
+### Light Mode (with Active Memory & History Panel)
+![Calculator UI - Light Mode](screenshot_light.png)
+
+### Dark Mode (with Active Memory & History Panel)
+![Calculator UI - Dark Mode](screenshot_dark.png)
+
 ## Technologies Used
 
-- HTML
-- CSS
-- JavaScript
+- HTML5
+- CSS3 (Vanilla CSS with CSS Grid & Custom Properties)
+- JavaScript (ES6+)
 
 ## How to Run
 
-Open the index.html file in a web browser.
+Open the `index.html` file in any modern web browser or serve it locally.
