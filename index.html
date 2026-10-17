@@ -10,13 +10,22 @@
 
 <body>
 
-    <div class="calculator">
+    <!-- New Advanced Feature: Calculator Wrapper containing main calculator and interactive history side panel -->
+    <div class="calculator-wrapper">
 
-        <header class="calculator-header">
-            <div class="calculator-icon">✳</div>
-            <h1>My Calculator</h1>
-            <p class="subtitle">Simple. Fast. Accurate.</p>
-        </header>
+        <div class="calculator">
+
+            <header class="calculator-header">
+                <div class="header-actions">
+                    <div class="calculator-icon">✳</div>
+                    <!-- New Advanced Feature: Toggle History Side Panel Button -->
+                    <button type="button" id="historyToggleBtn" class="history-toggle-btn" aria-label="Toggle calculation history panel" title="New Advanced Feature: Calculation History">
+                        🕒 History
+                    </button>
+                </div>
+                <h1>My Calculator</h1>
+                <p class="subtitle">Simple. Fast. Accurate.</p>
+            </header>
 
         <div class="display-container">
             <div class="display-header">
@@ -67,6 +76,17 @@
             </button>
             <p>Made for everyday calculations</p>
         </div>
+
+        <!-- New Advanced Feature: Interactive Calculation History Side Panel -->
+        <aside id="historyPanel" class="history-panel" aria-label="Calculation History Panel">
+            <div class="history-panel-header">
+                <h3>Calculation History</h3>
+                <button type="button" id="clearHistoryBtn" class="clear-history-btn" aria-label="Clear all calculation history" title="Clear History">Clear</button>
+            </div>
+            <div id="historyList" class="history-list">
+                <p class="history-empty">No calculations yet</p>
+            </div>
+        </aside>
 
     </div>
 

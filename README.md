@@ -18,6 +18,10 @@ A simple calculator built using HTML, CSS and JavaScript.
   - **Square Root (√)**: Instant square root calculation of display value.
   - **Percentage (%)**: Calculates percentage / converts value to percentage.
   - **Sign Toggle (±)**: Toggles current value between positive and negative.
+- **New Advanced Feature: Interactive Calculation History Side Panel**
+  - **Calculation Logging**: Automatically logs expressions and results upon evaluation.
+  - **Interactive Recall**: Click any history entry to immediately restore its result to the display.
+  - **Panel Drawer**: Accessible via the "🕒 History" header button with smooth slide toggle and "Clear" capability.
 
 ## Technologies Used
 

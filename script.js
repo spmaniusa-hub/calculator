@@ -78,9 +78,14 @@ function clearDisplay() {
 
 function calculate() {
     try {
-        display.value = Function(
-            '"use strict"; return (' + display.value + ')'
+        const expression = display.value;
+        const result = Function(
+            '"use strict"; return (' + expression + ')'
         )();
+        display.value = String(result);
+
+        // New Advanced Feature: Record calculation to history side panel
+        addHistoryItem(expression, result);
     } catch {
         display.value = "Error";
     }
@@ -100,6 +105,9 @@ function calculateSquareRoot() {
         }
         const result = parseFloat(Math.sqrt(val).toFixed(10));
         display.value = String(result);
+
+        // New Advanced Feature: Record square root to history panel
+        addHistoryItem("√(" + val + ")", result);
     } catch {
         display.value = "Error";
     }
@@ -111,6 +119,9 @@ function calculatePercentage() {
         const val = getDisplayNumericValue();
         const result = parseFloat((val / 100).toFixed(10));
         display.value = String(result);
+
+        // New Advanced Feature: Record percentage to history panel
+        addHistoryItem(val + "%", result);
     } catch {
         display.value = "Error";
     }
@@ -155,3 +166,94 @@ themeToggle.addEventListener("click", function () {
         themeToggle.textContent = "Switch to Dark Mode";
     }
 });
+
+// ============================================================================
+// New Advanced Feature: Interactive Calculation History Side Panel Logic
+// ============================================================================
+
+// New Advanced Feature: In-memory store for calculation history
+let calculationHistory = [];
+const historyPanel = document.getElementById("historyPanel");
+const historyList = document.getElementById("historyList");
+const historyToggleBtn = document.getElementById("historyToggleBtn");
+const clearHistoryBtn = document.getElementById("clearHistoryBtn");
+
+// New Advanced Feature: Helper function to escape HTML special characters
+function escapeHtml(str) {
+    return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+// New Advanced Feature: Toggle visibility of the history side panel
+function toggleHistoryPanel() {
+    if (historyPanel) {
+        historyPanel.classList.toggle("open");
+        const isOpen = historyPanel.classList.contains("open");
+        if (historyToggleBtn) {
+            historyToggleBtn.classList.toggle("active", isOpen);
+        }
+    }
+}
+
+// New Advanced Feature: Add a new calculation record into history
+function addHistoryItem(expression, result) {
+    if (!expression || expression === "0" || expression === String(result)) {
+        return;
+    }
+    const item = {
+        expression: expression,
+        result: result,
+        timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+    };
+    calculationHistory.unshift(item);
+    if (calculationHistory.length > 50) {
+        calculationHistory.pop();
+    }
+    renderHistory();
+}
+
+// New Advanced Feature: Render history records into the history side panel
+function renderHistory() {
+    if (!historyList) return;
+    if (calculationHistory.length === 0) {
+        historyList.innerHTML = '<p class="history-empty">No calculations yet</p>';
+        return;
+    }
+    historyList.innerHTML = "";
+    calculationHistory.forEach((item) => {
+        const entry = document.createElement("div");
+        entry.className = "history-item";
+        entry.setAttribute("role", "button");
+        entry.setAttribute("tabindex", "0");
+        entry.title = "Click to load result into display";
+        entry.innerHTML = `
+            <div class="history-item-top">
+                <span class="history-expr">${escapeHtml(item.expression)} =</span>
+                <span class="history-time">${escapeHtml(item.timestamp)}</span>
+            </div>
+            <div class="history-result">${escapeHtml(String(item.result))}</div>
+        `;
+        entry.addEventListener("click", () => {
+            display.value = String(item.result);
+        });
+        historyList.appendChild(entry);
+    });
+}
+
+// New Advanced Feature: Clear all stored history records
+function clearHistory() {
+    calculationHistory = [];
+    renderHistory();
+}
+
+// New Advanced Feature: Event listeners for history panel controls
+if (historyToggleBtn) {
+    historyToggleBtn.addEventListener("click", toggleHistoryPanel);
+}
+if (clearHistoryBtn) {
+    clearHistoryBtn.addEventListener("click", clearHistory);
+}
